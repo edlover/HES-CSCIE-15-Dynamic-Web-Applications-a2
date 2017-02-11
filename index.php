@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <h1>Bill Splitter</h1>
@@ -22,7 +22,6 @@
                 </div>
                 <div class="col-md-6">
                     <select name="splitNumTimes" id="splitNumTimes">
-                        <option value="0"># paying...</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -45,9 +44,10 @@
                 </div>
                 <div class="col-md-6">
                     <select name="serviceScore" id="serviceScore">
-                        <option value="Poor">Poor</option>
-                        <option value="Good">Good</option>
-                        <option value="Exceptional">Exceptional</option>
+                        <option value="0.20">Exceptional (20%)</option>
+                        <option value="0.15">Good (15%)</option>
+                        <option value="0.10">Poor (10%)</option>
+                        <option value="0">Awful (0%)</option>
                     </select>
                 </div>
             </div>
@@ -57,7 +57,6 @@
                 </div>
                 <div class="col-md-6">
                     <input type="checkbox" name="roundUp" id="roundUp">
-                    Yes
                 </div>
             </div>
             <div class="row">
@@ -71,11 +70,11 @@
         </form>
         <div class="row">
             <div id="output">
-
+                <p><?php if(isset($billTotal)) echo "Total (with tip): $" . $billTotal ?></p>
+                <p><?php if(isset($eachPays)) echo "Each person pays: $" . $eachPays ?></p>
+                <p><?php if(isset($billTotalRounded)) echo "With rounding for each payer, the grand total : $" . $billTotalRounded ?></p>
             </div>
         </div>
-
-
     </div>
 </body>
 </html>
