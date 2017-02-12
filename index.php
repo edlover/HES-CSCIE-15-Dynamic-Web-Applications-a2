@@ -35,7 +35,7 @@
                     <label for="billAmount">How much was the tab?:</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" name="billAmount" id="billAmount" placeholder="bill amount">
+                    <input type="text" name="billAmount" id="billAmount" placeholder="bill amount" value="<?php if(isset($billAmount)) echo $billAmount ?>">
                 </div>
             </div>
             <div class="row">
@@ -44,10 +44,11 @@
                 </div>
                 <div class="col-md-6">
                     <select name="serviceScore" id="serviceScore">
-                        <option value="0.20">Exceptional (20%)</option>
-                        <option value="0.15">Good (15%)</option>
-                        <option value="0.10">Poor (10%)</option>
-                        <option value="0">Awful (0%)</option>
+                        <?php if(!isset($serviceScore)) $serviceScore = "Exceptional" ?>
+                        <option value="Exceptional" <?php if($serviceScore == "Exceptional") echo "selected" ?>>Exceptional (20%)</option>
+                        <option value="Good" <?php if($serviceScore == "Good") echo "selected" ?>>Good (15%)</option>
+                        <option value="Poor" <?php if($serviceScore == "Poor") echo "selected" ?>>Poor (10%)</option>
+                        <option value="Awful" <?php if($serviceScore == "Awful") echo "selected" ?>>Awful (0%)</option>
                     </select>
                 </div>
             </div>
@@ -70,9 +71,18 @@
         </form>
         <div class="row">
             <div id="output">
-                <p><?php if(isset($billTotal)) echo "Total (with tip): $" . $billTotal ?></p>
-                <p><?php if(isset($eachPays)) echo "Each person pays: $" . $eachPays ?></p>
-                <p><?php if(isset($billTotalRounded)) echo "With rounding for each payer, the grand total : $" . $billTotalRounded ?></p>
+                <?php if(isset($billTotal)): ?>
+                    <p>Total (with tip): $<?=$billTotal?></p>
+                <?php endif; ?>
+                <?php if(isset($eachPays)): ?>
+                    <p>Each person pays: $<?=$eachPays?></p>
+                <?php endif; ?>
+                <?php if(isset($eachPaysRounded)): ?>
+                    <p>Each person pays (rounded up): $<?=$eachPaysRounded?></p>
+                <?php endif; ?>
+                <?php if(isset($billTotalRounded)): ?>
+                    <p>With rounding for each payer, the grand total to leave is: $<?=$billTotalRounded?></p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
