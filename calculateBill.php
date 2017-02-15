@@ -1,6 +1,8 @@
 <?php
 
+require('tools.php');
 
+$roundChecked = (isset($_GET['roundUp'])) ? true : false;
 
 if((isset($_GET['billAmount'])) && (isset($_GET['serviceScore']))
     && (isset($_GET['splitNumTimes']))) {
@@ -8,7 +10,6 @@ if((isset($_GET['billAmount'])) && (isset($_GET['serviceScore']))
     # get information from the form and put into variables
     $billAmount = $_GET['billAmount'];
     $splitBy = $_GET['splitNumTimes'];
-    $roundChecked = (isset($_GET['roundUp'])) ? true : false;
     $serviceScore = $_GET['serviceScore'];
 
     switch ($serviceScore) {
