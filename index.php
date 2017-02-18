@@ -28,6 +28,11 @@
                         <option value="3" <?php if($splitBy == "3") echo "selected" ?>>3</option>
                         <option value="4" <?php if($splitBy == "4") echo "selected" ?>>4</option>
                         <option value="5" <?php if($splitBy == "5") echo "selected" ?>>5</option>
+                        <option value="6" <?php if($splitBy == "6") echo "selected" ?>>6</option>
+                        <option value="7" <?php if($splitBy == "7") echo "selected" ?>>7</option>
+                        <option value="8" <?php if($splitBy == "8") echo "selected" ?>>8</option>
+                        <option value="9" <?php if($splitBy == "9") echo "selected" ?>>9</option>
+                        <option value="10" <?php if($splitBy == "10") echo "selected" ?>>10</option>
                     </select>
                 </div>
             </div>
@@ -37,7 +42,7 @@
                     <p class="subScript">* Required</p>
                 </div>
                 <div class="col-xs-6">
-                    <input type="text" name="billAmount" id="billAmount" placeholder="bill amount" value="<?php if(isset($billAmount)) echo sanitize($billAmount) ?>">
+                    <input type="text" name="billAmount" id="billAmount" placeholder="ex. 24.99" value="<?php if(isset($billAmount)) echo sanitize($billAmount) ?>">
                 </div>
             </div>
             <div class="row">
@@ -59,7 +64,7 @@
                     <label for="roundUp">Round up?:</label>
                 </div>
                 <div class="col-xs-6">
-                    <input type="checkbox" name="roundUp" id="roundUp" <?php if($roundChecked) echo 'CHECKED' ?>>
+                    <input type="checkbox" name="roundUp" id="roundUp" <?php if($tipForm->isChosen('roundUp')) echo 'CHECKED' ?>>
                       Yes
                 </div>
             </div>
@@ -72,20 +77,45 @@
                 </div>
             </div>
         </form>
-        <div id="<?php if(isset($billTotal)) echo 'output' ?>">
-            <?php if(isset($billTotal)): ?>
-                <div>Total (with tip): $<?=$billTotal?></div>
-            <?php endif; ?>
-            <?php if(isset($eachPays)): ?>
-                <div>Each person pays: $<?=$eachPays?></div>
-            <?php endif; ?>
-            <?php if(isset($eachPaysRounded)): ?>
-                <div>Each person pays (rounded up): $<?=$eachPaysRounded?></div>
-            <?php endif; ?>
-            <?php if(isset($billTotalRounded)): ?>
-                <div>With rounding, the total to leave is: $<?=$billTotalRounded?></div>
-            <?php endif; ?>
-        </div>
+
+        <?php if($errors): ?>
+            <div class='alert alert-danger'>
+                <div class="row">
+                    <div class="col-xs-4 rightJustify">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                    <div class="col-xs-8">
+                        <ul>
+                            <?php foreach($errors as $error): ?>
+                                <li><?=$error?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        <?php elseif($tipForm->isSubmitted()): ?>
+
+            <div class='alert alert-info'>
+                <div class="row">
+                    <div class="col-xs-4 rightJustify">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    </div>
+                    <div class="col-xs-8">
+                        <ul>
+                            <li>Total (with tip): $<?=$billTotal?></li>
+                            <?php if($tipForm->isChosen('roundUp')) : ?>
+                                <li>Each person pays (rounded up): $<?=$eachPaysRounded?></li>
+                                <li>With rounding, the total to leave is: $<?=$billTotalRounded?></li>
+                            <?php else : ?>
+                                <li>Each person pays: $<?=$eachPays?></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        <?php endif; ?>
     </div>
 </body>
 </html>
