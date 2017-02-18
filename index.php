@@ -42,7 +42,7 @@
                     <p class="subScript">* Required</p>
                 </div>
                 <div class="col-xs-6">
-                    <input type="text" name="billAmount" id="billAmount" placeholder="ex. 24.99" value="<?php if(isset($billAmount)) echo sanitize($billAmount) ?>">
+                    <input type="text" name="billAmount" id="billAmount" placeholder="ex. 24.99" value="<?php if(isset($billAmount)) echo $tipForm->sanitize($billAmount) ?>">
                 </div>
             </div>
             <div class="row">

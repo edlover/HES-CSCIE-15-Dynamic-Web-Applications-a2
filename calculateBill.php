@@ -1,9 +1,12 @@
 <?php
-require('tools.php');
+require('Tools.php');
 require('Form.php');
+require('TipPercentage.php');
 
 $tipForm = new DWA\Form($_GET);
 $errors = [];
+$tools = new DWA\Tools();
+$percentage = new DWA\TipPercentage();
 
 if($tipForm->isSubmitted()) {
 
@@ -23,21 +26,8 @@ if($tipForm->isSubmitted()) {
 
     if(!$errors) { # if no errors, then perform the calculations
 
-        # assign the service score to a percentage for calculation
-        switch ($serviceScore) {
-            case 'Exceptional':
-                $tipPercent = 0.20;
-                break;
-            case 'Good':
-                $tipPercent = 0.15;
-                break;
-            case 'Poor':
-                $tipPercent = 0.10;
-                break;
-            case 'Awful':
-                $tipPercent = 0;
-                break;
-        }
+        # get the tip percentage based on the service score
+        $tipPercent = $percentage->get($serviceScore);
 
         # calculate bill total and amount each pays
         $billTotal = ($billAmount * $tipPercent) + $billAmount;
