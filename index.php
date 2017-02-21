@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12" id="calculate">
+                <div class="col-xs-12" id="calculate"> 
                     <input type="submit" value="Calculate" class="btn btn-primary bt-small">
                 </div>
             </div>
