@@ -1,8 +1,7 @@
-<?php require("calculateBill.php"); ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php require("calculateBill.php"); ?>
     <meta charset="UTF-8" />
     <title>Tip Splitter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -69,11 +68,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 rightJustify">
+                <div class="col-xs-12" id="calculate">
                     <input type="submit" value="Calculate" class="btn btn-primary bt-small">
-                </div>
-                <div class="col-xs-6">
-                    <input type="reset" class="btn btn-primary bt-small">
                 </div>
             </div>
         </form>

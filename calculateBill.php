@@ -1,12 +1,12 @@
 <?php
-require('Tools.php');
+# require('Tools.php');
 require('Form.php');
 require('TipPercentage.php');
 
+# $tools = new DWA\Tools();
 $tipForm = new DWA\Form($_GET);
-$errors = [];
-$tools = new DWA\Tools();
 $percentage = new DWA\TipPercentage();
+$errors = [];
 
 if($tipForm->isSubmitted()) {
 
