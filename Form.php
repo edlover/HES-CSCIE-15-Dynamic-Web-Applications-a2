@@ -47,7 +47,7 @@ class Form {
     /**
 	* Determines if a single checkbox is checked
     * Example usage:
-    *   <input type='checkbox' name='caseSensitive' <?php if($form->isChecked('caseSensitive')) echo 'CHECKED' ?>>
+    *   <input type='checkbox' name='caseSensitive' <?php if($form->isChosen('caseSensitive')) echo 'CHECKED' ?>>
 	*/
     public function isChosen($name) {
         $value = isset($this->request[$name]) ? true : false;
@@ -146,7 +146,7 @@ class Form {
         }
 
         # Set public property hasErrors as Boolean
-        $this->hasErrors = empty($errors);
+        $this->hasErrors = !empty($errors);
 
         return $errors;
 
