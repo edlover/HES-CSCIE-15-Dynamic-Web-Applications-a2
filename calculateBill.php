@@ -1,9 +1,8 @@
 <?php
-# require('Tools.php');
+
 require('Form.php');
 require('TipPercentage.php');
 
-# $tools = new DWA\Tools();
 $tipForm = new DWA\Form($_GET);
 $percentage = new DWA\TipPercentage();
 $errors = [];
